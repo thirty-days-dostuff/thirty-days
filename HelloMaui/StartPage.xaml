@@ -19,18 +19,21 @@
                 x:Name="EmailEntry"
                 Placeholder="E-Mail"
                 Keyboard="Email"
+                TextChanged="OnCredentialsTextChanged"
                 SemanticProperties.Hint="E-Mail-Adresse" />
 
             <Entry
                 x:Name="PasswordEntry"
                 Placeholder="Passwort"
                 IsPassword="True"
+                TextChanged="OnCredentialsTextChanged"
                 SemanticProperties.Hint="Passwort" />
 
             <Button
                 x:Name="LoginButton"
                 Text="Login"
                 Clicked="OnLoginClicked"
+                IsEnabled="False"
                 HorizontalOptions="Fill" />
 
             <Button
