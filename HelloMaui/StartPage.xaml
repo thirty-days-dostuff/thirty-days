@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloMaui.StartPage"
+             Title="Anmelden">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="16"
+            VerticalOptions="Center">
+
+            <Label
+                Text="Anmelden"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry
+                x:Name="EmailEntry"
+                Placeholder="E-Mail"
+                Keyboard="Email"
+                SemanticProperties.Hint="E-Mail-Adresse" />
+
+            <Entry
+                x:Name="PasswordEntry"
+                Placeholder="Passwort"
+                IsPassword="True"
+                SemanticProperties.Hint="Passwort" />
+
+            <Button
+                x:Name="LoginButton"
+                Text="Login"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="ForgotPasswordButton"
+                Text="Passwort vergessen?"
+                Clicked="OnForgotPasswordClicked"
+                BackgroundColor="Transparent"
+                TextColor="{StaticResource Primary}"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="RegisterButton"
+                Text="Registrieren"
+                Clicked="OnRegisterClicked"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

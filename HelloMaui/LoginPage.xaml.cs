@@ -6,14 +6,4 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
-	private async void OnForgotPasswordClicked(object? sender, EventArgs e)
-	{
-		await Shell.Current.GoToAsync(nameof(ForgotPasswordPage));
-	}
-
-	private async void OnRegisterClicked(object? sender, EventArgs e)
-	{
-		await Shell.Current.GoToAsync(nameof(RegistrationPage));
-	}
 }
