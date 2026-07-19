@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:loc="clr-namespace:HelloMaui.Localization"
              x:Class="HelloMaui.StartPage"
-             Title="Anmelden">
+             Title="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=StartPageTitle}">
 
     <ScrollView>
         <VerticalStackLayout
@@ -10,35 +11,48 @@
             Spacing="16"
             VerticalOptions="Center">
 
+            <Picker
+                x:Name="LanguagePicker"
+                Title="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LanguagePickerTitle}"
+                SelectedIndexChanged="OnLanguageChanged"
+                HorizontalOptions="Fill">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Deutsch</x:String>
+                        <x:String>English</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
             <Label
-                Text="Anmelden"
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=StartPageTitle}"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Entry
                 x:Name="EmailEntry"
-                Placeholder="E-Mail"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=EmailPlaceholder}"
                 Keyboard="Email"
                 TextChanged="OnCredentialsTextChanged"
-                SemanticProperties.Hint="E-Mail-Adresse" />
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=EmailPlaceholder}" />
 
             <Entry
                 x:Name="PasswordEntry"
-                Placeholder="Passwort"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordPlaceholder}"
                 IsPassword="True"
                 TextChanged="OnCredentialsTextChanged"
-                SemanticProperties.Hint="Passwort" />
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordPlaceholder}" />
 
             <Button
                 x:Name="LoginButton"
-                Text="Login"
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LoginButtonText}"
                 Clicked="OnLoginClicked"
                 IsEnabled="False"
                 HorizontalOptions="Fill" />
 
             <Button
                 x:Name="ForgotPasswordButton"
-                Text="Passwort vergessen?"
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=ForgotPasswordButtonText}"
                 Clicked="OnForgotPasswordClicked"
                 BackgroundColor="Transparent"
                 TextColor="{StaticResource Primary}"
@@ -46,7 +60,7 @@
 
             <Button
                 x:Name="RegisterButton"
-                Text="Registrieren"
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegisterButtonText}"
                 Clicked="OnRegisterClicked"
                 HorizontalOptions="Fill" />
 
