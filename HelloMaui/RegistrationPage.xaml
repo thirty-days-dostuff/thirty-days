@@ -47,6 +47,7 @@
             <Button
                 x:Name="RegisterNowButton"
                 Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegisterNowButtonText}"
+                Clicked="OnRegisterNowClicked"
                 HorizontalOptions="Fill" />
 
         </VerticalStackLayout>

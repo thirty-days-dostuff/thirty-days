@@ -57,4 +57,22 @@ public sealed class LocalizationManager : INotifyPropertyChanged
 	public string ForgotPasswordPageTitle => _language == AppLanguage.German ? "Passwort zurücksetzen" : "Reset password";
 
 	public string LoginPageTitle => "Login";
+
+	public string OkButtonText => "OK";
+
+	public string RegistrationErrorTitle => _language == AppLanguage.German ? "Fehler" : "Error";
+
+	public string PasswordMismatchMessage => _language == AppLanguage.German
+		? "Die Passwörter stimmen nicht überein."
+		: "The passwords do not match.";
+
+	public string EmailAlreadyRegisteredMessage => _language == AppLanguage.German
+		? "Diese E-Mail-Adresse ist bereits registriert."
+		: "This email address is already registered.";
+
+	public string RegistrationSuccessTitle => _language == AppLanguage.German ? "Erfolg" : "Success";
+
+	public string RegistrationSuccessMessage => _language == AppLanguage.German
+		? "Registrierung erfolgreich."
+		: "Registration successful.";
 }
