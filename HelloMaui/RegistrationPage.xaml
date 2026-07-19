@@ -5,11 +5,51 @@
              x:Class="HelloMaui.RegistrationPage"
              Title="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegistrationPageTitle}">
 
-    <VerticalStackLayout VerticalOptions="Center">
-        <Label
-            Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegistrationPageTitle}"
-            Style="{StaticResource Headline}"
-            SemanticProperties.HeadingLevel="Level1" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="16"
+            VerticalOptions="Center">
+
+            <Label
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegistrationPageTitle}"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry
+                x:Name="EmailEntry"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=EmailPlaceholder}"
+                Keyboard="Email"
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=EmailPlaceholder}" />
+
+            <Entry
+                x:Name="PasswordEntry"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordPlaceholder}"
+                IsPassword="True"
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordPlaceholder}" />
+
+            <Entry
+                x:Name="PasswordRepeatEntry"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordRepeatPlaceholder}"
+                IsPassword="True"
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=PasswordRepeatPlaceholder}" />
+
+            <Entry
+                x:Name="FirstNameEntry"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=FirstNamePlaceholder}"
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=FirstNamePlaceholder}" />
+
+            <Entry
+                x:Name="LastNameEntry"
+                Placeholder="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LastNamePlaceholder}"
+                SemanticProperties.Hint="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LastNamePlaceholder}" />
+
+            <Button
+                x:Name="RegisterNowButton"
+                Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=RegisterNowButtonText}"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

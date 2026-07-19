@@ -38,6 +38,14 @@ public sealed class LocalizationManager : INotifyPropertyChanged
 
 	public string PasswordPlaceholder => _language == AppLanguage.German ? "Passwort" : "Password";
 
+	public string PasswordRepeatPlaceholder => _language == AppLanguage.German ? "Passwort wiederholen" : "Repeat password";
+
+	public string FirstNamePlaceholder => _language == AppLanguage.German ? "Vorname" : "First name";
+
+	public string LastNamePlaceholder => _language == AppLanguage.German ? "Nachname" : "Last name";
+
+	public string RegisterNowButtonText => _language == AppLanguage.German ? "Jetzt registrieren" : "Register now";
+
 	public string LoginButtonText => "Login";
 
 	public string ForgotPasswordButtonText => _language == AppLanguage.German ? "Passwort vergessen?" : "Forgot password?";
