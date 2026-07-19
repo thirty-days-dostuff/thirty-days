@@ -1,5 +1,4 @@
-﻿using HelloMaui.Data;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace HelloMaui;
 
@@ -15,9 +14,6 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
-		builder.Services.AddSingleton<UserDatabase>();
-		builder.Services.AddTransient<RegistrationPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

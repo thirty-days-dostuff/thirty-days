@@ -75,4 +75,12 @@ public sealed class LocalizationManager : INotifyPropertyChanged
 	public string RegistrationSuccessMessage => _language == AppLanguage.German
 		? "Registrierung erfolgreich."
 		: "Registration successful.";
+
+	public string LoginSuccessMessage => _language == AppLanguage.German
+		? "Erfolgreich angemeldet"
+		: "Successfully signed in";
+
+	public string LoginFailureMessage => _language == AppLanguage.German
+		? "Nicht erfolgreich"
+		: "Not successful";
 }

@@ -7,7 +7,7 @@
 
     <VerticalStackLayout VerticalOptions="Center">
         <Label
-            Text="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LoginPageTitle}"
+            x:Name="StatusLabel"
             Style="{StaticResource Headline}"
             SemanticProperties.HeadingLevel="Level1" />
     </VerticalStackLayout>

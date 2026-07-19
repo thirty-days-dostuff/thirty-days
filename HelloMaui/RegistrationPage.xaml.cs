@@ -5,12 +5,9 @@ namespace HelloMaui;
 
 public partial class RegistrationPage : ContentPage
 {
-	private readonly UserDatabase _userDatabase;
-
-	public RegistrationPage(UserDatabase userDatabase)
+	public RegistrationPage()
 	{
 		InitializeComponent();
-		_userDatabase = userDatabase;
 
 #if DEBUG
 		// TODO: remove test data prefill before shipping.
@@ -34,7 +31,7 @@ public partial class RegistrationPage : ContentPage
 
 		var email = EmailEntry.Text?.Trim() ?? string.Empty;
 
-		if (await _userDatabase.EmailExistsAsync(email))
+		if (await UserDatabase.Instance.EmailExistsAsync(email))
 		{
 			await DisplayAlertAsync(loc.RegistrationErrorTitle, loc.EmailAlreadyRegisteredMessage, loc.OkButtonText);
 			return;
@@ -51,7 +48,7 @@ public partial class RegistrationPage : ContentPage
 			LastName = LastNameEntry.Text?.Trim() ?? string.Empty
 		};
 
-		await _userDatabase.SaveUserAsync(user);
+		await UserDatabase.Instance.SaveUserAsync(user);
 
 		await DisplayAlertAsync(loc.RegistrationSuccessTitle, loc.RegistrationSuccessMessage, loc.OkButtonText);
 	}

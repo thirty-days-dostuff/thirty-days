@@ -4,7 +4,13 @@ namespace HelloMaui.Data;
 
 public sealed class UserDatabase
 {
+	public static UserDatabase Instance { get; } = new();
+
 	private SQLiteAsyncConnection? _connection;
+
+	private UserDatabase()
+	{
+	}
 
 	private async Task<SQLiteAsyncConnection> GetConnectionAsync()
 	{
@@ -22,6 +28,12 @@ public sealed class UserDatabase
 		var connection = await GetConnectionAsync();
 		var count = await connection.Table<User>().Where(u => u.Email == email).CountAsync();
 		return count > 0;
+	}
+
+	public async Task<User?> GetUserByEmailAsync(string email)
+	{
+		var connection = await GetConnectionAsync();
+		return await connection.Table<User>().Where(u => u.Email == email).FirstOrDefaultAsync();
 	}
 
 	public async Task SaveUserAsync(User user)
