@@ -8,4 +8,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Compile Remove="HelloMaui/**" />
+        <EmbeddedResource Remove="HelloMaui/**" />
+        <None Remove="HelloMaui/**" />
+    </ItemGroup>
+
 </Project>
