@@ -11,6 +11,15 @@ public partial class RegistrationPage : ContentPage
 	{
 		InitializeComponent();
 		_userDatabase = userDatabase;
+
+#if DEBUG
+		// TODO: remove test data prefill before shipping.
+		EmailEntry.Text = $"test-{DateTime.Now:HHmmss}@example.com";
+		PasswordEntry.Text = "Test1234!";
+		PasswordRepeatEntry.Text = "Test1234!";
+		FirstNameEntry.Text = "Max";
+		LastNameEntry.Text = "Mustermann";
+#endif
 	}
 
 	private async void OnRegisterNowClicked(object? sender, EventArgs e)
