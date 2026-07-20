@@ -1,0 +1,26 @@
+@page "/login-result"
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@Loc.LoginPageTitle</PageTitle>
+
+<div class="form-page">
+    <h1>@StatusMessage</h1>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public bool? Success { get; set; }
+
+    private string StatusMessage => (Success ?? false) ? Loc.LoginSuccessMessage : Loc.LoginFailureMessage;
+
+    protected override void OnInitialized()
+    {
+        Loc.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

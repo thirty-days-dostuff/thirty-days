@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="HelloMaui/HelloMaui.csproj" />
+  <Project Path="HelloBlazor/HelloBlazor/HelloBlazor.csproj" />
+  <Project Path="HelloBlazor/HelloBlazor.Client/HelloBlazor.Client.csproj" />
   <Project Path="thirty-days-main.csproj" />
 </Solution>

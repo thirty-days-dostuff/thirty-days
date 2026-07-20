@@ -1,0 +1,62 @@
+@page "/"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@Loc.StartPageTitle</PageTitle>
+
+<div class="form-page">
+    <label class="language-switcher">
+        @Loc.LanguageLabel
+        <select value="@LanguageValue" @onchange="OnLanguageChanged">
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+        </select>
+    </label>
+
+    <h1>@Loc.StartPageTitle</h1>
+
+    <input type="email" placeholder="@Loc.EmailPlaceholder" @bind="_email" @bind:event="oninput" />
+    <input type="password" placeholder="@Loc.PasswordPlaceholder" @bind="_password" @bind:event="oninput" />
+
+    <button disabled="@(!CanLogin)" @onclick="OnLoginClicked">@Loc.LoginButtonText</button>
+
+    <button type="button" class="link-button" @onclick="GoToForgotPassword">@Loc.ForgotPasswordLinkText</button>
+    <button type="button" class="link-button" @onclick="GoToRegister">@Loc.RegisterLinkText</button>
+</div>
+
+@code {
+    private string _email = string.Empty;
+    private string _password = string.Empty;
+
+    private bool CanLogin => !string.IsNullOrWhiteSpace(_email) && !string.IsNullOrWhiteSpace(_password);
+
+    private string LanguageValue => Loc.Language == AppLanguage.German ? "de" : "en";
+
+    protected override void OnInitialized()
+    {
+        Loc.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+
+    private void OnLanguageChanged(ChangeEventArgs e)
+    {
+        Loc.Language = (string?)e.Value == "de" ? AppLanguage.German : AppLanguage.English;
+    }
+
+    private async Task OnLoginClicked()
+    {
+        var response = await Http.PostAsJsonAsync("api/users/login", new LoginRequest(_email.Trim(), _password));
+        var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        Navigation.NavigateTo($"/login-result?success={(result?.Success ?? false)}");
+    }
+
+    private void GoToForgotPassword() => Navigation.NavigateTo("/forgot-password");
+
+    private void GoToRegister() => Navigation.NavigateTo("/register");
+}

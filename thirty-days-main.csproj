@@ -12,6 +12,9 @@
         <Compile Remove="HelloMaui/**" />
         <EmbeddedResource Remove="HelloMaui/**" />
         <None Remove="HelloMaui/**" />
+        <Compile Remove="HelloBlazor/**" />
+        <EmbeddedResource Remove="HelloBlazor/**" />
+        <None Remove="HelloBlazor/**" />
     </ItemGroup>
 
 </Project>
