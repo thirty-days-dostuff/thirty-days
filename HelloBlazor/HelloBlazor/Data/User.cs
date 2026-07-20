@@ -8,6 +8,9 @@ public class User
 	public int Id { get; set; }
 
 	[Indexed(Unique = true)]
+	public string? Auth0UserId { get; set; }
+
+	[Indexed(Unique = true)]
 	public string Email { get; set; } = string.Empty;
 
 	public string PasswordHash { get; set; } = string.Empty;

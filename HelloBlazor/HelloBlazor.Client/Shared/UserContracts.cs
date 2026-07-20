@@ -14,3 +14,5 @@ public enum RegisterStatus
 }
 
 public record RegisterResponse(RegisterStatus Status);
+
+public record UserProfileResponse(string Email, string FirstName, string LastName);

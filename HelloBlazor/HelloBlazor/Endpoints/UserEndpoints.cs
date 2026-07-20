@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using HelloBlazor.Client.Shared;
 using HelloBlazor.Data;
 
@@ -7,6 +8,19 @@ public static class UserEndpoints
 {
 	public static void MapUserEndpoints(this IEndpointRouteBuilder app)
 	{
+		app.MapGet("/api/users/me", async (HttpContext httpContext, UserDatabase db) =>
+		{
+			var auth0UserId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			if (auth0UserId is null)
+				return Results.Unauthorized();
+
+			var user = await db.GetUserByAuth0IdAsync(auth0UserId);
+			if (user is null)
+				return Results.NotFound();
+
+			return Results.Ok(new UserProfileResponse(user.Email, user.FirstName, user.LastName));
+		}).RequireAuthorization();
+
 		app.MapPost("/api/users/register", async (RegisterRequest request, UserDatabase db) =>
 		{
 			if (request.Password != request.PasswordRepeat)
