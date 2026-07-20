@@ -10,8 +10,10 @@ public static class AuthEndpoints
 	{
 		app.MapGet("/Account/Login", async (HttpContext httpContext, string returnUrl = "/") =>
 		{
+			var redirectUri = returnUrl.StartsWith('/') ? returnUrl : "/";
+
 			var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-				.WithRedirectUri(returnUrl)
+				.WithRedirectUri(redirectUri)
 				.Build();
 
 			await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);

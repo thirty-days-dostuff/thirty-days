@@ -4,7 +4,7 @@
 <AuthorizeView>
     <Authorized>
         <header class="app-header">
-            <span>@context.User.Identity?.Name</span>
+            <a href="/profile">@context.User.Identity?.Name</a>
             <a href="/Account/Logout">@Loc.LogoutButtonText</a>
         </header>
     </Authorized>

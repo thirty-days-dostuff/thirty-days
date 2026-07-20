@@ -1,0 +1,14 @@
+@page "/profile"
+@attribute [Authorize]
+@using System.Security.Claims
+
+<PageTitle>Profile</PageTitle>
+
+<h1>Profile</h1>
+
+<AuthorizeView>
+    <Authorized>
+        <p><strong>Name:</strong> @context.User.Identity?.Name</p>
+        <p><strong>Email:</strong> @context.User.FindFirst(ClaimTypes.Email)?.Value</p>
+    </Authorized>
+</AuthorizeView>
