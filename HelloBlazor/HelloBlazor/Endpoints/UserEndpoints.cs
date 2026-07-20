@@ -29,7 +29,7 @@ public static class UserEndpoints
 			});
 
 			return Results.Ok(new RegisterResponse(RegisterStatus.Success));
-		});
+		}).RequireAuthorization();
 
 		app.MapPost("/api/users/login", async (LoginRequest request, UserDatabase db) =>
 		{
