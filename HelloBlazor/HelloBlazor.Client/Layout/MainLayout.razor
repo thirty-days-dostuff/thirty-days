@@ -1,4 +1,14 @@
 ﻿@inherits LayoutComponentBase
+@inject LocalizationService Loc
+
+<AuthorizeView>
+    <Authorized>
+        <header class="app-header">
+            <span>@context.User.Identity?.Name</span>
+            <a href="/Account/Logout">@Loc.LogoutButtonText</a>
+        </header>
+    </Authorized>
+</AuthorizeView>
 
 @Body
 

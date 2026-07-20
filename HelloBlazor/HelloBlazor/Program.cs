@@ -1,6 +1,9 @@
+using Auth0.AspNetCore.Authentication;
+using HelloBlazor.Authentication;
 using HelloBlazor.Components;
 using HelloBlazor.Data;
 using HelloBlazor.Endpoints;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,18 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSingleton(new UserDatabase(Path.Combine(builder.Environment.ContentRootPath, "users.db3")));
+
+builder.Services.AddAuth0WebAppAuthentication(options =>
+{
+    options.Domain = builder.Configuration["Auth0:Domain"]!;
+    options.ClientId = builder.Configuration["Auth0:ClientId"]!;
+    options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
+    options.Scope = "openid profile email";
+});
+
+builder.Services.AddAuthorization();
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddScoped<AuthenticationStateProvider, PersistingAuthenticationStateProvider>();
 
 var app = builder.Build();
 
@@ -26,6 +41,9 @@ else
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseAntiforgery();
 
 app.MapStaticAssets();
@@ -34,5 +52,6 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(HelloBlazor.Client._Imports).Assembly);
 
 app.MapUserEndpoints();
+app.MapAuthEndpoints();
 
 app.Run();

@@ -35,6 +35,8 @@ public sealed class LocalizationService
 
 	public string LoginButtonText => "Login";
 
+	public string LogoutButtonText => "Logout";
+
 	public string ForgotPasswordLinkText => _language == AppLanguage.German ? "Passwort vergessen?" : "Forgot password?";
 
 	public string RegisterLinkText => _language == AppLanguage.German ? "Registrieren" : "Register";
