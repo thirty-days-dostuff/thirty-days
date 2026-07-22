@@ -14,21 +14,17 @@
         <p class="@(_isError ? "message-error" : "message-success")">@_message</p>
     }
 
-    <input type="email" placeholder="@Loc.EmailPlaceholder" @bind="_email" @bind:event="oninput" />
-    <input type="password" placeholder="@Loc.PasswordPlaceholder" @bind="_password" @bind:event="oninput" />
-    <input type="password" placeholder="@Loc.PasswordRepeatPlaceholder" @bind="_passwordRepeat" @bind:event="oninput" />
     <input placeholder="@Loc.FirstNamePlaceholder" @bind="_firstName" @bind:event="oninput" />
     <input placeholder="@Loc.LastNamePlaceholder" @bind="_lastName" @bind:event="oninput" />
+    <input type="date" placeholder="@Loc.DateOfBirthPlaceholder" @bind="_dateOfBirth" />
 
     <button @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
 </div>
 
 @code {
-    private string _email = string.Empty;
-    private string _password = string.Empty;
-    private string _passwordRepeat = string.Empty;
     private string _firstName = string.Empty;
     private string _lastName = string.Empty;
+    private DateTime _dateOfBirth = DateTime.Today;
     private string? _message;
     private bool _isError;
 
@@ -44,32 +40,12 @@
 
     private async Task OnRegisterNowClicked()
     {
-        if (_password != _passwordRepeat)
-        {
-            _isError = true;
-            _message = Loc.PasswordMismatchMessage;
-            return;
-        }
-
         var response = await Http.PostAsJsonAsync("api/users/register", new RegisterRequest(
-            _email.Trim(), _password, _passwordRepeat, _firstName.Trim(), _lastName.Trim()));
+            _firstName.Trim(), _lastName.Trim(), _dateOfBirth));
 
         var result = await response.Content.ReadFromJsonAsync<RegisterResponse>();
 
-        switch (result?.Status)
-        {
-            case RegisterStatus.EmailAlreadyRegistered:
-                _isError = true;
-                _message = Loc.EmailAlreadyRegisteredMessage;
-                break;
-            case RegisterStatus.PasswordMismatch:
-                _isError = true;
-                _message = Loc.PasswordMismatchMessage;
-                break;
-            case RegisterStatus.Success:
-                _isError = false;
-                _message = Loc.RegistrationSuccessMessage;
-                break;
-        }
+        _isError = result?.Success != true;
+        _message = _isError ? null : Loc.RegistrationSuccessMessage;
     }
 }

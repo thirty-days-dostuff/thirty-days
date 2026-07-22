@@ -22,29 +22,22 @@ public sealed class UserDatabase
 		return _connection;
 	}
 
-	public async Task<bool> EmailExistsAsync(string email)
-	{
-		var connection = await GetConnectionAsync();
-		var count = await connection.Table<User>().Where(u => u.Email == email).CountAsync();
-		return count > 0;
-	}
-
 	public async Task<User?> GetUserByEmailAsync(string email)
 	{
 		var connection = await GetConnectionAsync();
 		return await connection.Table<User>().Where(u => u.Email == email).FirstOrDefaultAsync();
 	}
 
-	public async Task SaveUserAsync(User user)
-	{
-		var connection = await GetConnectionAsync();
-		await connection.InsertAsync(user);
-	}
-
 	public async Task<User?> GetUserByAuth0IdAsync(string auth0UserId)
 	{
 		var connection = await GetConnectionAsync();
 		return await connection.Table<User>().Where(u => u.Auth0UserId == auth0UserId).FirstOrDefaultAsync();
+	}
+
+	public async Task UpdateUserAsync(User user)
+	{
+		var connection = await GetConnectionAsync();
+		await connection.UpdateAsync(user);
 	}
 
 	public async Task<User> EnsureUserForAuth0LoginAsync(string auth0UserId, string? email, string? firstName, string? lastName)

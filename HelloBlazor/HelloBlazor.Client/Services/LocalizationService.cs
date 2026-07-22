@@ -23,15 +23,11 @@ public sealed class LocalizationService
 
 	public string StartPageTitle => _language == AppLanguage.German ? "Anmelden" : "Sign in";
 
-	public string EmailPlaceholder => _language == AppLanguage.German ? "E-Mail" : "Email";
-
-	public string PasswordPlaceholder => _language == AppLanguage.German ? "Passwort" : "Password";
-
-	public string PasswordRepeatPlaceholder => _language == AppLanguage.German ? "Passwort wiederholen" : "Repeat password";
-
 	public string FirstNamePlaceholder => _language == AppLanguage.German ? "Vorname" : "First name";
 
 	public string LastNamePlaceholder => _language == AppLanguage.German ? "Nachname" : "Last name";
+
+	public string DateOfBirthPlaceholder => _language == AppLanguage.German ? "Geburtsdatum" : "Date of birth";
 
 	public string LoginButtonText => "Login";
 
@@ -48,14 +44,6 @@ public sealed class LocalizationService
 	public string ForgotPasswordPageTitle => _language == AppLanguage.German ? "Passwort zurücksetzen" : "Reset password";
 
 	public string LoginPageTitle => "Login";
-
-	public string PasswordMismatchMessage => _language == AppLanguage.German
-		? "Die Passwörter stimmen nicht überein."
-		: "The passwords do not match.";
-
-	public string EmailAlreadyRegisteredMessage => _language == AppLanguage.German
-		? "Diese E-Mail-Adresse ist bereits registriert."
-		: "This email address is already registered.";
 
 	public string RegistrationSuccessMessage => _language == AppLanguage.German
 		? "Registrierung erfolgreich."

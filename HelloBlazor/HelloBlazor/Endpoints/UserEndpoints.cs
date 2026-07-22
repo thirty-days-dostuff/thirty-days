@@ -21,28 +21,23 @@ public static class UserEndpoints
 			return Results.Ok(new UserProfileResponse(user.Email, user.FirstName, user.LastName));
 		}).RequireAuthorization();
 
-		app.MapPost("/api/users/register", async (RegisterRequest request, UserDatabase db) =>
+		app.MapPost("/api/users/register", async (RegisterRequest request, HttpContext httpContext, UserDatabase db) =>
 		{
-			if (request.Password != request.PasswordRepeat)
-				return Results.Ok(new RegisterResponse(RegisterStatus.PasswordMismatch));
+			var auth0UserId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			if (auth0UserId is null)
+				return Results.Unauthorized();
 
-			var email = request.Email.Trim();
+			var user = await db.GetUserByAuth0IdAsync(auth0UserId);
+			if (user is null)
+				return Results.NotFound();
 
-			if (await db.EmailExistsAsync(email))
-				return Results.Ok(new RegisterResponse(RegisterStatus.EmailAlreadyRegistered));
+			user.FirstName = request.FirstName.Trim();
+			user.LastName = request.LastName.Trim();
+			user.DateOfBirth = request.DateOfBirth;
 
-			var (hash, salt) = PasswordHasher.Hash(request.Password);
+			await db.UpdateUserAsync(user);
 
-			await db.SaveUserAsync(new User
-			{
-				Email = email,
-				PasswordHash = hash,
-				PasswordSalt = salt,
-				FirstName = request.FirstName.Trim(),
-				LastName = request.LastName.Trim()
-			});
-
-			return Results.Ok(new RegisterResponse(RegisterStatus.Success));
+			return Results.Ok(new RegisterResponse(true));
 		}).RequireAuthorization();
 
 		app.MapPost("/api/users/login", async (LoginRequest request, UserDatabase db) =>
