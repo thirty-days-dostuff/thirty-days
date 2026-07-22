@@ -1,3 +1,5 @@
+using HelloBlazor.Client.Shared;
+
 namespace HelloBlazor.Client.Services;
 
 public sealed class LocalizationService
@@ -28,6 +30,16 @@ public sealed class LocalizationService
 	public string LastNamePlaceholder => _language == AppLanguage.German ? "Nachname" : "Last name";
 
 	public string DateOfBirthPlaceholder => _language == AppLanguage.German ? "Geburtsdatum" : "Date of birth";
+
+	public string GenderPlaceholder => _language == AppLanguage.German ? "Geschlecht" : "Gender";
+
+	public string GenderName(Gender gender) => gender switch
+	{
+		Gender.Male => _language == AppLanguage.German ? "Männlich" : "Male",
+		Gender.Female => _language == AppLanguage.German ? "Weiblich" : "Female",
+		Gender.Diverse => _language == AppLanguage.German ? "Divers" : "Diverse",
+		_ => gender.ToString()
+	};
 
 	public string LoginButtonText => "Login";
 

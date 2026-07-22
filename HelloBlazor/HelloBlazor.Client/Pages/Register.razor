@@ -18,6 +18,13 @@
     <input placeholder="@Loc.LastNamePlaceholder" @bind="_lastName" @bind:event="oninput" />
     <input type="date" placeholder="@Loc.DateOfBirthPlaceholder" @bind="_dateOfBirth" />
 
+    <select @bind="_gender" aria-label="@Loc.GenderPlaceholder">
+        @foreach (var gender in Enum.GetValues<Gender>())
+        {
+            <option value="@gender">@Loc.GenderName(gender)</option>
+        }
+    </select>
+
     <button @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
 </div>
 
@@ -25,6 +32,7 @@
     private string _firstName = string.Empty;
     private string _lastName = string.Empty;
     private DateTime _dateOfBirth = DateTime.Today;
+    private Gender _gender = Gender.Male;
     private string? _message;
     private bool _isError;
 
@@ -41,7 +49,7 @@
     private async Task OnRegisterNowClicked()
     {
         var response = await Http.PostAsJsonAsync("api/users/register", new RegisterRequest(
-            _firstName.Trim(), _lastName.Trim(), _dateOfBirth));
+            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender));
 
         var result = await response.Content.ReadFromJsonAsync<RegisterResponse>();
 

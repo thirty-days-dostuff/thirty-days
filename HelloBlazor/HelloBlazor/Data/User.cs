@@ -1,3 +1,4 @@
+using HelloBlazor.Client.Shared;
 using SQLite;
 
 namespace HelloBlazor.Data;
@@ -22,4 +23,6 @@ public class User
 	public string LastName { get; set; } = string.Empty;
 
 	public DateTime DateOfBirth { get; set; }
+
+	public Gender Gender { get; set; }
 }
