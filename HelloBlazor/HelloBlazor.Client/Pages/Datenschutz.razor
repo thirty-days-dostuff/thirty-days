@@ -66,6 +66,17 @@
         </section>
 
         <section>
+            <h2>@Loc.CookiesHeading</h2>
+            <p>@Loc.CookiesIntro</p>
+            <ul>
+                @foreach (var item in Loc.CookiesItems)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </section>
+
+        <section>
             <h2>@Loc.RightsHeading</h2>
             <ul>
                 @foreach (var item in Loc.RightsItems)

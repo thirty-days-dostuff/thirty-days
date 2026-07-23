@@ -181,6 +181,28 @@ public sealed class LocalizationService
 			"Right to lodge a complaint with a supervisory authority (Art. 77 GDPR)"
 		];
 
+	public string CookiesHeading => _language == AppLanguage.German ? "Cookies" : "Cookies";
+
+	public string CookiesIntro => _language == AppLanguage.German
+		? "Diese Anwendung verwendet ausschließlich technisch notwendige Cookies, die für den Betrieb und die Absicherung des Logins erforderlich sind. Ein Einwilligungs-Banner ist dafür nicht erforderlich, da keine Analyse-, Marketing- oder Tracking-Cookies eingesetzt werden."
+		: "This application only uses strictly necessary cookies required to operate and secure the login. No consent banner is required for these, since no analytics, marketing or tracking cookies are used.";
+
+	public IReadOnlyList<string> CookiesItems => _language == AppLanguage.German
+		?
+		[
+			".AspNetCore.Cookies – hält die Anmeldesitzung nach dem Login aufrecht",
+			".AspNetCore.OpenIdConnect.Nonce.* – schützt den Auth0-Login-Vorgang vor Replay-Angriffen (nur während des Logins)",
+			".AspNetCore.Correlation.* – schützt den Auth0-Login-Vorgang vor CSRF-Angriffen (nur während des Logins)",
+			".AspNetCore.Antiforgery.* – schützt Formulareingaben vor CSRF-Angriffen"
+		]
+		:
+		[
+			".AspNetCore.Cookies – keeps you signed in after login",
+			".AspNetCore.OpenIdConnect.Nonce.* – protects the Auth0 login flow against replay attacks (only during login)",
+			".AspNetCore.Correlation.* – protects the Auth0 login flow against CSRF attacks (only during login)",
+			".AspNetCore.Antiforgery.* – protects form submissions against CSRF attacks"
+		];
+
 	public string ContactHeading => _language == AppLanguage.German ? "Kontakt für Datenschutzanfragen" : "Contact for privacy inquiries";
 
 	public string RegistrationSuccessMessage => _language == AppLanguage.German
