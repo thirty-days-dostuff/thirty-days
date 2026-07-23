@@ -1,3 +1,21 @@
+.app-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: #FBEAF0;
+    font-size: 0.85rem;
+}
+
+.app-header a {
+    color: #993556;
+    text-decoration: none;
+}
+
+.app-header a:hover {
+    text-decoration: underline;
+}
+
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;

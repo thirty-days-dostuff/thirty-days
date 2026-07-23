@@ -5,92 +5,96 @@
 
 <PageTitle>@Loc.DatenschutzPageTitle</PageTitle>
 
-<div class="legal-page">
-    <h1>@Loc.DatenschutzPageTitle</h1>
+<div class="pastel-page">
+    <div class="pastel-container pastel-container-wide">
+        <h1>@Loc.DatenschutzPageTitle</h1>
 
-    @if (_company is not null)
-    {
-        <section>
-            <h2>@Loc.ControllerHeading</h2>
-            <p>
-                @_company.CompanyName<br />
-                @_company.Street, @_company.PostalCode @_company.City, @_company.Country<br />
-                @Loc.EmailLabel: @_company.Email<br />
-                @Loc.PhoneLabel: @_company.Phone
-            </p>
-        </section>
+        @if (_company is not null)
+        {
+            <div class="pastel-card">
+                <section>
+                    <h2>@Loc.ControllerHeading</h2>
+                    <p>
+                        @_company.CompanyName<br />
+                        @_company.Street, @_company.PostalCode @_company.City, @_company.Country<br />
+                        @Loc.EmailLabel: @_company.Email<br />
+                        @Loc.PhoneLabel: @_company.Phone
+                    </p>
+                </section>
 
-        <section>
-            <h2>@Loc.DataCollectedHeading</h2>
-            <ul>
-                @foreach (var item in Loc.DataCollectedItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.DataCollectedHeading</h2>
+                    <ul>
+                        @foreach (var item in Loc.DataCollectedItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.PurposeHeading</h2>
-            <ul>
-                @foreach (var item in Loc.PurposeItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.PurposeHeading</h2>
+                    <ul>
+                        @foreach (var item in Loc.PurposeItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.LegalBasisHeading</h2>
-            <ul>
-                @foreach (var item in Loc.LegalBasisItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.LegalBasisHeading</h2>
+                    <ul>
+                        @foreach (var item in Loc.LegalBasisItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.RetentionHeading</h2>
-            <p>@Loc.RetentionText</p>
-        </section>
+                <section>
+                    <h2>@Loc.RetentionHeading</h2>
+                    <p>@Loc.RetentionText</p>
+                </section>
 
-        <section>
-            <h2>@Loc.RecipientsHeading</h2>
-            <ul>
-                @foreach (var item in Loc.RecipientsItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.RecipientsHeading</h2>
+                    <ul>
+                        @foreach (var item in Loc.RecipientsItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.CookiesHeading</h2>
-            <p>@Loc.CookiesIntro</p>
-            <ul>
-                @foreach (var item in Loc.CookiesItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.CookiesHeading</h2>
+                    <p>@Loc.CookiesIntro</p>
+                    <ul>
+                        @foreach (var item in Loc.CookiesItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.RightsHeading</h2>
-            <ul>
-                @foreach (var item in Loc.RightsItems)
-                {
-                    <li>@item</li>
-                }
-            </ul>
-        </section>
+                <section>
+                    <h2>@Loc.RightsHeading</h2>
+                    <ul>
+                        @foreach (var item in Loc.RightsItems)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </section>
 
-        <section>
-            <h2>@Loc.ContactHeading</h2>
-            <p>@_company.Email</p>
-        </section>
-    }
+                <section>
+                    <h2>@Loc.ContactHeading</h2>
+                    <p>@_company.Email</p>
+                </section>
+            </div>
+        }
+    </div>
 </div>
 
 @code {

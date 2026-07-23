@@ -25,6 +25,12 @@ public sealed class LocalizationService
 
 	public string StartPageTitle => _language == AppLanguage.German ? "Anmelden" : "Sign in";
 
+	public string WelcomeHeadline => _language == AppLanguage.German ? "Finde deinen Menschen" : "Find your person";
+
+	public string WelcomeTagline => _language == AppLanguage.German
+		? "Echte Verbindungen beginnen mit einem Hallo. Lass uns deins finden."
+		: "Real connections start with a hello. Let's find yours.";
+
 	public string FirstNamePlaceholder => _language == AppLanguage.German ? "Vorname" : "First name";
 
 	public string LastNamePlaceholder => _language == AppLanguage.German ? "Nachname" : "Last name";

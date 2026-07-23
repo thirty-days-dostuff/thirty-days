@@ -5,21 +5,27 @@
 
 <PageTitle>Profile</PageTitle>
 
-<h1>Profile</h1>
+<div class="pastel-page">
+    <div class="pastel-container">
+        <h1>Profile</h1>
 
-<AuthorizeView>
-    <Authorized>
-        <p><strong>Name:</strong> @context.User.Identity?.Name</p>
-        <p><strong>Email:</strong> @context.User.FindFirst(ClaimTypes.Email)?.Value</p>
+        <AuthorizeView>
+            <Authorized>
+                <div class="pastel-card">
+                    <p><strong>Name:</strong> @context.User.Identity?.Name</p>
+                    <p><strong>Email:</strong> @context.User.FindFirst(ClaimTypes.Email)?.Value</p>
 
-        @if (_dbProfile is not null)
-        {
-            <h2>Local profile</h2>
-            <p><strong>First name:</strong> @_dbProfile.FirstName</p>
-            <p><strong>Last name:</strong> @_dbProfile.LastName</p>
-        }
-    </Authorized>
-</AuthorizeView>
+                    @if (_dbProfile is not null)
+                    {
+                        <h2>Local profile</h2>
+                        <p><strong>First name:</strong> @_dbProfile.FirstName</p>
+                        <p><strong>Last name:</strong> @_dbProfile.LastName</p>
+                    }
+                </div>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+</div>
 
 @code {
     private UserProfileResponse? _dbProfile;

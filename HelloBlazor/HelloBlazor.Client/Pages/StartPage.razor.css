@@ -1,0 +1,224 @@
+.welcome-page {
+    min-height: 100vh;
+    background: #FBEAF0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2.5rem 1rem;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.phone-card {
+    width: 100%;
+    max-width: 340px;
+    background: #FBEAF0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+}
+
+.lang-switch {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #993556;
+    margin-bottom: 1.5rem;
+}
+
+.lang-switch select {
+    border: 0.5px solid #ED93B1;
+    background: #fff;
+    color: #4B1528;
+    border-radius: 99px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+/* Playful icon cluster */
+.hero {
+    margin-bottom: 1.8rem;
+}
+
+.icon-cluster {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bubble svg {
+    width: 46%;
+    height: 46%;
+}
+
+.bubble-pink {
+    top: 8px;
+    left: 14px;
+    width: 74px;
+    height: 74px;
+    background: #F4C0D1;
+    color: #993556;
+}
+
+.bubble-amber {
+    top: 20px;
+    right: 8px;
+    width: 66px;
+    height: 66px;
+    background: #FAC775;
+    color: #854F0B;
+}
+
+.bubble-teal {
+    bottom: 2px;
+    left: 36px;
+    width: 70px;
+    height: 70px;
+    background: #9FE1CB;
+    color: #0F6E56;
+}
+
+.bubble-heart {
+    top: 56px;
+    left: 52px;
+    width: 44px;
+    height: 44px;
+    background: #D4537E;
+    color: #fff;
+    border: 3px solid #FBEAF0;
+}
+
+.welcome-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #4B1528;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+}
+
+.welcome-tagline {
+    font-size: 0.95rem;
+    color: #993556;
+    line-height: 1.5;
+    margin: 0 0 1.8rem;
+    max-width: 250px;
+}
+
+.welcome-success {
+    font-size: 0.95rem;
+    color: #0F6E56;
+    font-weight: 500;
+    margin: 0 0 0.8rem;
+}
+
+/* Pill call-to-action */
+.cta-primary {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.95rem;
+    border-radius: 99px;
+    background: #D4537E;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.cta-primary:hover {
+    background: #C2456E;
+}
+
+.cta-primary:active {
+    transform: scale(0.98);
+}
+
+/* Differentiation card */
+.differentiation {
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 20px;
+    border: 0.5px solid #F4C0D1;
+    padding: 1.5rem 1.4rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.differentiation h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4B1528;
+    margin: 0 0 0.6rem;
+    line-height: 1.35;
+}
+
+.differentiation p {
+    font-size: 0.9rem;
+    color: #993556;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+}
+
+.differentiation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.differentiation li {
+    position: relative;
+    padding-left: 1.7rem;
+    font-size: 0.9rem;
+    color: #4B1528;
+    line-height: 1.45;
+}
+
+.differentiation li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: #F4C0D1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23993556' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+    background-size: 0.7rem 0.7rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-link {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+}
+
+.footer-link a {
+    color: #993556;
+    text-decoration: none;
+}
+
+.footer-link a:hover {
+    text-decoration: underline;
+}

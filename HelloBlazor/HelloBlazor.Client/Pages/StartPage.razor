@@ -4,41 +4,76 @@
 
 <PageTitle>@Loc.StartPageTitle</PageTitle>
 
-<div class="form-page">
-    <label class="language-switcher">
-        @Loc.LanguageLabel
-        <select value="@LanguageValue" @onchange="OnLanguageChanged">
-            <option value="de">Deutsch</option>
-            <option value="en">English</option>
-        </select>
-    </label>
+<div class="welcome-page">
+    <div class="phone-card">
+        <label class="lang-switch">
+            @Loc.LanguageLabel
+            <select value="@LanguageValue" @onchange="OnLanguageChanged">
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+            </select>
+        </label>
 
-    <h1>@Loc.StartPageTitle</h1>
+        <div class="hero">
+            <div class="icon-cluster">
+                <span class="bubble bubble-pink">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="9" cy="10" r="1.2" fill="currentColor" />
+                        <circle cx="15" cy="10" r="1.2" fill="currentColor" />
+                        <path d="M8 14c1 1.5 2.5 2.2 4 2.2s3-.7 4-2.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </span>
+                <span class="bubble bubble-amber">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                        <path d="M16 9h2.2a2 2 0 0 1 0 4H16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                        <path d="M8 3.5v2M11.5 3.5v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </span>
+                <span class="bubble bubble-teal">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 12a8 8 0 1 1-3.4-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M9 12l2.5 2.5L20 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span class="bubble bubble-heart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 20s-6.5-4-9-8.3C1.4 9 2.7 5.8 6 5.8c2 0 3 1.2 4 2.7 1-1.5 2-2.7 4-2.7 3.3 0 4.6 3.2 3 5.9-2.5 4.3-9 8.3-9 8.3Z" fill="currentColor" />
+                    </svg>
+                </span>
+            </div>
+        </div>
 
-    <AuthorizeView>
-        <Authorized>
-            <p>@Loc.LoginSuccessMessage</p>
-        </Authorized>
-        <NotAuthorized>
-            <a class="link-button" href="/Account/Login?returnUrl=/register">@Loc.LoginButtonText</a>
-        </NotAuthorized>
-    </AuthorizeView>
+        <h1 class="welcome-title">@Loc.WelcomeHeadline</h1>
+        <p class="welcome-tagline">@Loc.WelcomeTagline</p>
 
-    <section>
-        <h2>@Loc.DifferentiationHeading</h2>
-        <p>@Loc.DifferentiationIntro</p>
-        <ul>
-            @foreach (var item in Loc.DifferentiationItems)
-            {
-                <li>@item</li>
-            }
-        </ul>
-    </section>
+        <AuthorizeView>
+            <Authorized>
+                <p class="welcome-success">@Loc.LoginSuccessMessage</p>
+                <a class="cta-primary" href="/profile">@context.User.Identity?.Name</a>
+            </Authorized>
+            <NotAuthorized>
+                <a class="cta-primary" href="/Account/Login?returnUrl=/register">@Loc.LoginButtonText</a>
+            </NotAuthorized>
+        </AuthorizeView>
 
-    <p class="footer-link">
-        <a href="/impressum">@Loc.ImpressumLinkText</a>
-        <a href="/datenschutz">@Loc.DatenschutzLinkText</a>
-    </p>
+        <section class="differentiation">
+            <h2>@Loc.DifferentiationHeading</h2>
+            <p>@Loc.DifferentiationIntro</p>
+            <ul>
+                @foreach (var item in Loc.DifferentiationItems)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </section>
+
+        <p class="footer-link">
+            <a href="/impressum">@Loc.ImpressumLinkText</a>
+            <a href="/datenschutz">@Loc.DatenschutzLinkText</a>
+        </p>
+    </div>
 </div>
 
 @code {

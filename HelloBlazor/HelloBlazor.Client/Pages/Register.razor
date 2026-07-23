@@ -6,38 +6,56 @@
 
 <PageTitle>@Loc.RegistrationPageTitle</PageTitle>
 
-<div class="form-page">
-    <h1>@Loc.RegistrationPageTitle</h1>
+<div class="pastel-page">
+    <div class="pastel-container">
+        <h1>@Loc.RegistrationPageTitle</h1>
 
-    @if (!string.IsNullOrEmpty(_message))
-    {
-        <p class="@(_isError ? "message-error" : "message-success")">@_message</p>
-    }
+        <div class="pastel-card">
+            @if (!string.IsNullOrEmpty(_message))
+            {
+                <p class="@(_isError ? "message-error" : "message-success")">@_message</p>
+            }
 
-    <input placeholder="@Loc.FirstNamePlaceholder" @bind="_firstName" @bind:event="oninput" />
-    <input placeholder="@Loc.LastNamePlaceholder" @bind="_lastName" @bind:event="oninput" />
-    <input type="date" placeholder="@Loc.DateOfBirthPlaceholder" @bind="_dateOfBirth" />
-
-    <select @bind="_gender" aria-label="@Loc.GenderPlaceholder">
-        @foreach (var gender in Enum.GetValues<Gender>())
-        {
-            <option value="@gender">@Loc.GenderName(gender)</option>
-        }
-    </select>
-
-    <fieldset>
-        <legend>@Loc.InterestedInPlaceholder</legend>
-        @foreach (var interest in InterestOptions)
-        {
-            <label>
-                <input type="checkbox" checked="@_interestedIn.Contains(interest)"
-                       @onchange="@(e => ToggleInterest(interest, (bool)e.Value!))" />
-                @Loc.InterestName(interest)
+            <label class="pastel-field">
+                @Loc.FirstNamePlaceholder
+                <input placeholder="@Loc.FirstNamePlaceholder" @bind="_firstName" @bind:event="oninput" />
             </label>
-        }
-    </fieldset>
 
-    <button @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
+            <label class="pastel-field">
+                @Loc.LastNamePlaceholder
+                <input placeholder="@Loc.LastNamePlaceholder" @bind="_lastName" @bind:event="oninput" />
+            </label>
+
+            <label class="pastel-field">
+                @Loc.DateOfBirthPlaceholder
+                <input type="date" @bind="_dateOfBirth" />
+            </label>
+
+            <label class="pastel-field">
+                @Loc.GenderPlaceholder
+                <select @bind="_gender" aria-label="@Loc.GenderPlaceholder">
+                    @foreach (var gender in Enum.GetValues<Gender>())
+                    {
+                        <option value="@gender">@Loc.GenderName(gender)</option>
+                    }
+                </select>
+            </label>
+
+            <fieldset class="pastel-checkbox-group">
+                <legend>@Loc.InterestedInPlaceholder</legend>
+                @foreach (var interest in InterestOptions)
+                {
+                    <label>
+                        <input type="checkbox" checked="@_interestedIn.Contains(interest)"
+                               @onchange="@(e => ToggleInterest(interest, (bool)e.Value!))" />
+                        @Loc.InterestName(interest)
+                    </label>
+                }
+            </fieldset>
+
+            <button class="cta-primary" @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
+        </div>
+    </div>
 </div>
 
 @code {
