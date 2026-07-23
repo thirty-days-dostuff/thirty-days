@@ -24,6 +24,17 @@
         </NotAuthorized>
     </AuthorizeView>
 
+    <section>
+        <h2>@Loc.DifferentiationHeading</h2>
+        <p>@Loc.DifferentiationIntro</p>
+        <ul>
+            @foreach (var item in Loc.DifferentiationItems)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    </section>
+
     <p class="footer-link">
         <a href="/impressum">@Loc.ImpressumLinkText</a>
         <a href="/datenschutz">@Loc.DatenschutzLinkText</a>

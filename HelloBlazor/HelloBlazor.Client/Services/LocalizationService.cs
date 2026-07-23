@@ -67,6 +67,28 @@ public sealed class LocalizationService
 
 	public string LoginPageTitle => "Login";
 
+	public string DifferentiationHeading => _language == AppLanguage.German
+		? "Gibts nicht schon genug Dating Apps? Was machen wir anders?"
+		: "Aren't there enough dating apps already? What do we do differently?";
+
+	public string DifferentiationIntro => _language == AppLanguage.German
+		? "Ganz ehrlich: ja, davon gibt's genug. Uns geht's nicht ums endlose Wischen, sondern um echte Verbindungen:"
+		: "Honestly? Sure, there are plenty. We're not about endless swiping – we're about real connections:";
+
+	public IReadOnlyList<string> DifferentiationItems => _language == AppLanguage.German
+		?
+		[
+			"Verifizierte Profile statt Fake-Accounts – dank Login über Auth0",
+			"Klare Angaben statt Rätselraten: Geschlecht und Interessen auf einen Blick",
+			"Fokus auf Qualität statt Quantität bei den Matches"
+		]
+		:
+		[
+			"Verified profiles instead of fake accounts, thanks to Auth0 login",
+			"No guessing games: gender and interests visible at a glance",
+			"Quality over quantity when it comes to matches"
+		];
+
 	public string ImpressumLinkText => _language == AppLanguage.German ? "Impressum" : "Legal notice";
 
 	public string ImpressumPageTitle => _language == AppLanguage.German ? "Impressum" : "Legal notice";
