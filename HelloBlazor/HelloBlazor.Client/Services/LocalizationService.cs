@@ -41,6 +41,16 @@ public sealed class LocalizationService
 		_ => gender.ToString()
 	};
 
+	public string InterestedInPlaceholder => _language == AppLanguage.German ? "Interessiert an" : "Interested in";
+
+	public string InterestName(GenderInterest interest) => interest switch
+	{
+		GenderInterest.Male => _language == AppLanguage.German ? "Männer" : "Men",
+		GenderInterest.Female => _language == AppLanguage.German ? "Frauen" : "Women",
+		GenderInterest.Diverse => _language == AppLanguage.German ? "Divers" : "Diverse",
+		_ => interest.ToString()
+	};
+
 	public string LoginButtonText => "Login";
 
 	public string LogoutButtonText => "Logout";

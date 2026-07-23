@@ -11,7 +11,16 @@ public enum Gender
 	Diverse
 }
 
-public record RegisterRequest(string FirstName, string LastName, DateTime DateOfBirth, Gender Gender);
+[Flags]
+public enum GenderInterest
+{
+	None = 0,
+	Male = 1,
+	Female = 2,
+	Diverse = 4
+}
+
+public record RegisterRequest(string FirstName, string LastName, DateTime DateOfBirth, Gender Gender, GenderInterest InterestedIn);
 
 public record RegisterResponse(bool Success);
 

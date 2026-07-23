@@ -35,6 +35,7 @@ public static class UserEndpoints
 			user.LastName = request.LastName.Trim();
 			user.DateOfBirth = request.DateOfBirth;
 			user.Gender = request.Gender;
+			user.InterestedIn = request.InterestedIn;
 
 			await db.UpdateUserAsync(user);
 

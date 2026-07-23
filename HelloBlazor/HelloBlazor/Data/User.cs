@@ -25,4 +25,6 @@ public class User
 	public DateTime DateOfBirth { get; set; }
 
 	public Gender Gender { get; set; }
+
+	public GenderInterest InterestedIn { get; set; }
 }

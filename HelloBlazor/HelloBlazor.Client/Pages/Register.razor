@@ -25,6 +25,18 @@
         }
     </select>
 
+    <fieldset>
+        <legend>@Loc.InterestedInPlaceholder</legend>
+        @foreach (var interest in InterestOptions)
+        {
+            <label>
+                <input type="checkbox" checked="@_interestedIn.Contains(interest)"
+                       @onchange="@(e => ToggleInterest(interest, (bool)e.Value!))" />
+                @Loc.InterestName(interest)
+            </label>
+        }
+    </fieldset>
+
     <button @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
 </div>
 
@@ -33,8 +45,20 @@
     private string _lastName = string.Empty;
     private DateTime _dateOfBirth = DateTime.Today;
     private Gender _gender = Gender.Male;
+    private readonly HashSet<GenderInterest> _interestedIn = [];
     private string? _message;
     private bool _isError;
+
+    private static readonly GenderInterest[] InterestOptions =
+        [GenderInterest.Male, GenderInterest.Female, GenderInterest.Diverse];
+
+    private void ToggleInterest(GenderInterest interest, bool isChecked)
+    {
+        if (isChecked)
+            _interestedIn.Add(interest);
+        else
+            _interestedIn.Remove(interest);
+    }
 
     protected override void OnInitialized()
     {
@@ -48,8 +72,10 @@
 
     private async Task OnRegisterNowClicked()
     {
+        var interestedIn = _interestedIn.Aggregate(GenderInterest.None, (acc, interest) => acc | interest);
+
         var response = await Http.PostAsJsonAsync("api/users/register", new RegisterRequest(
-            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender));
+            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender, interestedIn));
 
         var result = await response.Content.ReadFromJsonAsync<RegisterResponse>();
 
