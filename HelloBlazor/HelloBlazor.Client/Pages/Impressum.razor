@@ -1,0 +1,61 @@
+@page "/impressum"
+@inject HttpClient Http
+@inject LocalizationService Loc
+@implements IDisposable
+
+<PageTitle>@Loc.ImpressumPageTitle</PageTitle>
+
+<div class="form-page">
+    <h1>@Loc.ImpressumPageTitle</h1>
+
+    @if (_company is not null)
+    {
+        <table class="company-info-table">
+            <tbody>
+                <tr>
+                    <th>@Loc.CompanyNameLabel</th>
+                    <td>@_company.CompanyName</td>
+                </tr>
+                <tr>
+                    <th>@Loc.AddressLabel</th>
+                    <td>@_company.Street, @_company.PostalCode @_company.City, @_company.Country</td>
+                </tr>
+                <tr>
+                    <th>@Loc.RepresentativeLabel</th>
+                    <td>@_company.Representative</td>
+                </tr>
+                <tr>
+                    <th>@Loc.PhoneLabel</th>
+                    <td>@_company.Phone</td>
+                </tr>
+                <tr>
+                    <th>@Loc.EmailLabel</th>
+                    <td>@_company.Email</td>
+                </tr>
+                <tr>
+                    <th>@Loc.CommercialRegisterNumberLabel</th>
+                    <td>@_company.CommercialRegisterNumber</td>
+                </tr>
+                <tr>
+                    <th>@Loc.VatIdLabel</th>
+                    <td>@_company.VatId</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private CompanyInfoResponse? _company;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Loc.OnChange += StateHasChanged;
+        _company = await Http.GetFromJsonAsync<CompanyInfoResponse>("api/company");
+    }
+
+    public void Dispose()
+    {
+        Loc.OnChange -= StateHasChanged;
+    }
+}

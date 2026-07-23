@@ -66,5 +66,6 @@ app.MapRazorComponents<App>()
 
 app.MapUserEndpoints();
 app.MapAuthEndpoints();
+app.MapCompanyEndpoints();
 
 app.Run();

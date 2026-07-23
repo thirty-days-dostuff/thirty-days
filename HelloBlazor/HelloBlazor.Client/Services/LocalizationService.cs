@@ -67,6 +67,122 @@ public sealed class LocalizationService
 
 	public string LoginPageTitle => "Login";
 
+	public string ImpressumLinkText => _language == AppLanguage.German ? "Impressum" : "Legal notice";
+
+	public string ImpressumPageTitle => _language == AppLanguage.German ? "Impressum" : "Legal notice";
+
+	public string CompanyNameLabel => _language == AppLanguage.German ? "Firma" : "Company";
+
+	public string AddressLabel => _language == AppLanguage.German ? "Anschrift" : "Address";
+
+	public string RepresentativeLabel => _language == AppLanguage.German ? "Vertretungsberechtigt" : "Represented by";
+
+	public string PhoneLabel => _language == AppLanguage.German ? "Telefon" : "Phone";
+
+	public string EmailLabel => _language == AppLanguage.German ? "E-Mail" : "Email";
+
+	public string CommercialRegisterNumberLabel => _language == AppLanguage.German ? "Handelsregisternummer" : "Commercial register number";
+
+	public string VatIdLabel => _language == AppLanguage.German ? "USt-IdNr." : "VAT ID";
+
+	public string DatenschutzLinkText => _language == AppLanguage.German ? "Datenschutzerklärung" : "Privacy policy";
+
+	public string DatenschutzPageTitle => _language == AppLanguage.German ? "Datenschutzerklärung" : "Privacy policy";
+
+	public string ControllerHeading => _language == AppLanguage.German
+		? "Verantwortlicher für die Datenverarbeitung"
+		: "Controller responsible for data processing";
+
+	public string DataCollectedHeading => _language == AppLanguage.German ? "Welche Daten erhoben werden" : "What data is collected";
+
+	public IReadOnlyList<string> DataCollectedItems => _language == AppLanguage.German
+		?
+		[
+			"Über die Anmeldung mit Auth0: Name, E-Mail-Adresse und eine eindeutige Benutzer-ID",
+			"Im Rahmen der Profilregistrierung: Vorname, Nachname, Geburtsdatum, Geschlecht und das Geschlecht, an dem Interesse besteht"
+		]
+		:
+		[
+			"Via Auth0 login: name, email address and a unique user ID",
+			"As part of profile registration: first name, last name, date of birth, gender and the gender you're interested in"
+		];
+
+	public string PurposeHeading => _language == AppLanguage.German ? "Warum die Daten verarbeitet werden" : "Why the data is processed";
+
+	public IReadOnlyList<string> PurposeItems => _language == AppLanguage.German
+		?
+		[
+			"Erstellung und Verwaltung Ihres Benutzerkontos",
+			"Authentifizierung und Absicherung des Logins",
+			"Bereitstellung personalisierter Funktionen der Anwendung"
+		]
+		:
+		[
+			"Creating and managing your user account",
+			"Authenticating and securing the login",
+			"Providing personalized features of the application"
+		];
+
+	public string LegalBasisHeading => _language == AppLanguage.German ? "Rechtsgrundlage (DSGVO)" : "Legal basis (GDPR)";
+
+	public IReadOnlyList<string> LegalBasisItems => _language == AppLanguage.German
+		?
+		[
+			"Art. 6 Abs. 1 lit. b DSGVO (Erfüllung eines Vertrags bzw. vorvertragliche Maßnahmen) für die Kontoerstellung und -verwaltung",
+			"Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) für die Absicherung des Logins, z. B. zur Betrugsprävention"
+		]
+		:
+		[
+			"Art. 6(1)(b) GDPR (performance of a contract / pre-contractual measures) for account creation and management",
+			"Art. 6(1)(f) GDPR (legitimate interest) for securing the login, e.g. fraud prevention"
+		];
+
+	public string RetentionHeading => _language == AppLanguage.German ? "Speicherdauer" : "Storage duration";
+
+	public string RetentionText => _language == AppLanguage.German
+		? "Die Daten werden gespeichert, solange Ihr Benutzerkonto besteht. Nach Löschung des Kontos werden die Daten entfernt, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen."
+		: "The data is stored for as long as your user account exists. Once the account is deleted, the data is removed unless legal retention obligations require otherwise.";
+
+	public string RecipientsHeading => _language == AppLanguage.German ? "Empfänger der Daten" : "Recipients of the data";
+
+	public IReadOnlyList<string> RecipientsItems => _language == AppLanguage.German
+		?
+		[
+			"Auth0 (Okta, Inc.) als Auftragsverarbeiter für die Authentifizierung",
+			"Der Hosting-Anbieter dieser Anwendung"
+		]
+		:
+		[
+			"Auth0 (Okta, Inc.) as processor for authentication",
+			"The hosting provider of this application"
+		];
+
+	public string RightsHeading => _language == AppLanguage.German ? "Betroffenenrechte" : "Your rights";
+
+	public IReadOnlyList<string> RightsItems => _language == AppLanguage.German
+		?
+		[
+			"Recht auf Auskunft (Art. 15 DSGVO)",
+			"Recht auf Berichtigung (Art. 16 DSGVO)",
+			"Recht auf Löschung (Art. 17 DSGVO)",
+			"Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)",
+			"Recht auf Datenübertragbarkeit (Art. 20 DSGVO)",
+			"Recht auf Widerspruch (Art. 21 DSGVO)",
+			"Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO)"
+		]
+		:
+		[
+			"Right of access (Art. 15 GDPR)",
+			"Right to rectification (Art. 16 GDPR)",
+			"Right to erasure (Art. 17 GDPR)",
+			"Right to restriction of processing (Art. 18 GDPR)",
+			"Right to data portability (Art. 20 GDPR)",
+			"Right to object (Art. 21 GDPR)",
+			"Right to lodge a complaint with a supervisory authority (Art. 77 GDPR)"
+		];
+
+	public string ContactHeading => _language == AppLanguage.German ? "Kontakt für Datenschutzanfragen" : "Contact for privacy inquiries";
+
 	public string RegistrationSuccessMessage => _language == AppLanguage.German
 		? "Registrierung erfolgreich."
 		: "Registration successful.";
