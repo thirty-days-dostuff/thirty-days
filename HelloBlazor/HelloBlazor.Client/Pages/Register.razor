@@ -53,6 +53,23 @@
                 }
             </fieldset>
 
+            <fieldset class="pastel-checkbox-group">
+                <legend>@Loc.AgeRangePlaceholder</legend>
+                <div class="pastel-range-slider">
+                    <div class="pastel-range-values">
+                        <span>@_minAgeInterest @Loc.YearsUnitLabel</span>
+                        <span>@_maxAgeInterest @Loc.YearsUnitLabel</span>
+                    </div>
+                    <div class="pastel-range-track">
+                        <div class="pastel-range-fill" style="left: @(MinAgePercent)%; right: @(100 - MaxAgePercent)%"></div>
+                        <input type="range" min="@MinPossibleAge" max="@MaxPossibleAge" value="@_minAgeInterest"
+                               @oninput="OnMinAgeInput" aria-label="@Loc.AgeRangeFromLabel" />
+                        <input type="range" min="@MinPossibleAge" max="@MaxPossibleAge" value="@_maxAgeInterest"
+                               @oninput="OnMaxAgeInput" aria-label="@Loc.AgeRangeToLabel" />
+                    </div>
+                </div>
+            </fieldset>
+
             <button class="cta-primary" @onclick="OnRegisterNowClicked">@Loc.RegisterNowButtonText</button>
         </div>
     </div>
@@ -64,11 +81,29 @@
     private DateTime _dateOfBirth = DateTime.Today;
     private Gender _gender = Gender.Male;
     private readonly HashSet<GenderInterest> _interestedIn = [];
+    private const int MinPossibleAge = 18;
+    private const int MaxPossibleAge = 99;
+
+    private int _minAgeInterest = MinPossibleAge;
+    private int _maxAgeInterest = MaxPossibleAge;
     private string? _message;
     private bool _isError;
 
     private static readonly GenderInterest[] InterestOptions =
         [GenderInterest.Male, GenderInterest.Female, GenderInterest.Diverse];
+
+    private double MinAgePercent => (_minAgeInterest - MinPossibleAge) * 100.0 / (MaxPossibleAge - MinPossibleAge);
+    private double MaxAgePercent => (_maxAgeInterest - MinPossibleAge) * 100.0 / (MaxPossibleAge - MinPossibleAge);
+
+    private void OnMinAgeInput(ChangeEventArgs e)
+    {
+        _minAgeInterest = Math.Min(Convert.ToInt32(e.Value), _maxAgeInterest);
+    }
+
+    private void OnMaxAgeInput(ChangeEventArgs e)
+    {
+        _maxAgeInterest = Math.Max(Convert.ToInt32(e.Value), _minAgeInterest);
+    }
 
     private void ToggleInterest(GenderInterest interest, bool isChecked)
     {
@@ -93,7 +128,7 @@
         var interestedIn = _interestedIn.Aggregate(GenderInterest.None, (acc, interest) => acc | interest);
 
         var response = await Http.PostAsJsonAsync("api/users/register", new RegisterRequest(
-            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender, interestedIn));
+            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender, interestedIn, _minAgeInterest, _maxAgeInterest));
 
         var result = await response.Content.ReadFromJsonAsync<RegisterResponse>();
 

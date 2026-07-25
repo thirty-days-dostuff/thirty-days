@@ -31,11 +31,16 @@ public static class UserEndpoints
 			if (user is null)
 				return Results.NotFound();
 
+			if (request.MinAgeInterest > request.MaxAgeInterest)
+				return Results.Ok(new RegisterResponse(false));
+
 			user.FirstName = request.FirstName.Trim();
 			user.LastName = request.LastName.Trim();
 			user.DateOfBirth = request.DateOfBirth;
 			user.Gender = request.Gender;
 			user.InterestedIn = request.InterestedIn;
+			user.MinAgeInterest = request.MinAgeInterest;
+			user.MaxAgeInterest = request.MaxAgeInterest;
 
 			await db.UpdateUserAsync(user);
 

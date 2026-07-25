@@ -49,6 +49,14 @@ public sealed class LocalizationService
 
 	public string InterestedInPlaceholder => _language == AppLanguage.German ? "Interessiert an" : "Interested in";
 
+	public string AgeRangePlaceholder => _language == AppLanguage.German ? "Alter des Partners" : "Partner's age";
+
+	public string AgeRangeFromLabel => _language == AppLanguage.German ? "von" : "from";
+
+	public string AgeRangeToLabel => _language == AppLanguage.German ? "bis" : "to";
+
+	public string YearsUnitLabel => _language == AppLanguage.German ? "Jahre" : "years";
+
 	public string InterestName(GenderInterest interest) => interest switch
 	{
 		GenderInterest.Male => _language == AppLanguage.German ? "Männer" : "Men",
@@ -127,12 +135,12 @@ public sealed class LocalizationService
 		?
 		[
 			"Über die Anmeldung mit Auth0: Name, E-Mail-Adresse und eine eindeutige Benutzer-ID",
-			"Im Rahmen der Profilregistrierung: Vorname, Nachname, Geburtsdatum, Geschlecht und das Geschlecht, an dem Interesse besteht"
+			"Im Rahmen der Profilregistrierung: Vorname, Nachname, Geburtsdatum, Geschlecht, das Geschlecht, an dem Interesse besteht, sowie die gewünschte Altersspanne des Partners"
 		]
 		:
 		[
 			"Via Auth0 login: name, email address and a unique user ID",
-			"As part of profile registration: first name, last name, date of birth, gender and the gender you're interested in"
+			"As part of profile registration: first name, last name, date of birth, gender, the gender you're interested in, and the desired age range of the partner"
 		];
 
 	public string PurposeHeading => _language == AppLanguage.German ? "Warum die Daten verarbeitet werden" : "Why the data is processed";

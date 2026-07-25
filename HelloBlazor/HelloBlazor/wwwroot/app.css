@@ -195,6 +195,88 @@ body {
     margin: 0 0 0.2rem;
 }
 
+.pastel-range-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.pastel-range-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--pastel-text-strong);
+}
+
+.pastel-range-track {
+    position: relative;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.pastel-range-track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--pastel-border);
+}
+
+.pastel-range-fill {
+    position: absolute;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--pastel-accent);
+}
+
+.pastel-range-track input[type="range"] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+}
+
+.pastel-range-track input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+.pastel-range-track input[type="range"]::-moz-range-track {
+    background: transparent;
+}
+
+.pastel-range-track input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--pastel-accent);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(75, 21, 40, 0.25);
+}
+
+.pastel-range-track input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--pastel-accent);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(75, 21, 40, 0.25);
+}
+
 .pastel-checkbox-group label {
     display: flex;
     align-items: center;

@@ -20,7 +20,7 @@ public enum GenderInterest
 	Diverse = 4
 }
 
-public record RegisterRequest(string FirstName, string LastName, DateTime DateOfBirth, Gender Gender, GenderInterest InterestedIn);
+public record RegisterRequest(string FirstName, string LastName, DateTime DateOfBirth, Gender Gender, GenderInterest InterestedIn, int MinAgeInterest, int MaxAgeInterest);
 
 public record RegisterResponse(bool Success);
 

@@ -27,4 +27,8 @@ public class User
 	public Gender Gender { get; set; }
 
 	public GenderInterest InterestedIn { get; set; }
+
+	public int MinAgeInterest { get; set; } = 18;
+
+	public int MaxAgeInterest { get; set; } = 99;
 }
