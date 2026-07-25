@@ -5,6 +5,10 @@ using HelloBlazor.Data;
 using HelloBlazor.Endpoints;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Components.Authorization;
+using OpenTelemetry;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,34 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSingleton(new UserDatabase(Path.Combine(builder.Environment.ContentRootPath, "users.db3")));
+
+builder.Logging.AddOpenTelemetry(logging =>
+{
+    logging.IncludeFormattedMessage = true;
+    logging.IncludeScopes = true;
+});
+
+var otel = builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService(builder.Environment.ApplicationName))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddRuntimeInstrumentation());
+
+// Exports via OTLP when OTEL_EXPORTER_OTLP_ENDPOINT (and related OTEL_* env vars) are set.
+// See https://opentelemetry.io/docs/languages/sdk-configuration/otlp-exporter/
+if (!string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]))
+{
+    otel.UseOtlpExporter();
+}
+else if (builder.Environment.IsDevelopment())
+{
+    otel.WithTracing(tracing => tracing.AddConsoleExporter());
+    otel.WithMetrics(metrics => metrics.AddConsoleExporter());
+}
 
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
