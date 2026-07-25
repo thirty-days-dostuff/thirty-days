@@ -2,6 +2,7 @@
 @attribute [Authorize]
 @inject HttpClient Http
 @inject LocalizationService Loc
+@using System.Diagnostics
 @implements IDisposable
 
 <PageTitle>@Loc.RegistrationPageTitle</PageTitle>
@@ -78,7 +79,7 @@
 @code {
     private string _firstName = string.Empty;
     private string _lastName = string.Empty;
-    private DateTime _dateOfBirth = DateTime.Today;
+    private DateOnly? _dateOfBirth;
     private Gender _gender = Gender.Male;
     private readonly HashSet<GenderInterest> _interestedIn = [];
     private const int MinPossibleAge = 18;
@@ -127,8 +128,13 @@
     {
         var interestedIn = _interestedIn.Aggregate(GenderInterest.None, (acc, interest) => acc | interest);
 
+        if (_dateOfBirth is not { } dateOfBirthValue)
+        {
+            throw new UnreachableException($"{nameof(_dateOfBirth)} should be not null at this point");
+        }
+        
         var response = await Http.PostAsJsonAsync("api/users/register", new RegisterRequest(
-            _firstName.Trim(), _lastName.Trim(), _dateOfBirth, _gender, interestedIn, _minAgeInterest, _maxAgeInterest));
+            _firstName.Trim(), _lastName.Trim(), dateOfBirthValue, _gender, interestedIn, _minAgeInterest, _maxAgeInterest));
 
         var result = await response.Content.ReadFromJsonAsync<RegisterResponse>();
 
