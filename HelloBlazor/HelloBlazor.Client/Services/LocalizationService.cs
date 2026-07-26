@@ -28,8 +28,8 @@ public sealed class LocalizationService
 	public string WelcomeHeadline => _language == AppLanguage.German ? "Finde deinen Menschen" : "Find your person";
 
 	public string WelcomeTagline => _language == AppLanguage.German
-		? "Echte Verbindungen beginnen mit einem Hallo. Lass uns deins finden."
-		: "Real connections start with a hello. Let's find yours.";
+		? "Echte Verbindungen brauchen mehr als ein einfaches: Hallo, wie gehts dir ;) ?"
+		: "Real connections need more than a simple: Hi, how are you?";
 
 	public string FirstNamePlaceholder => _language == AppLanguage.German ? "Vorname" : "First name";
 
@@ -86,21 +86,30 @@ public sealed class LocalizationService
 		: "Aren't there enough dating apps already? What do we do differently?";
 
 	public string DifferentiationIntro => _language == AppLanguage.German
-		? "Ganz ehrlich: ja, davon gibt's genug. Uns geht's nicht ums endlose Wischen, sondern um echte Verbindungen:"
+		? "Ganz ehrlich: ja, davon gibt's genug. Aber hiermit starten wir einen neuen Versuch für echte Verbindungen " +
+		  "und gegen endloses Wischen:"
 		: "Honestly? Sure, there are plenty. We're not about endless swiping – we're about real connections:";
 
 	public IReadOnlyList<string> DifferentiationItems => _language == AppLanguage.German
 		?
 		[
-			"Verifizierte Profile statt Fake-Accounts – dank Login über Auth0",
-			"Klare Angaben statt Rätselraten: Geschlecht und Interessen auf einen Blick",
+			"Verifizierte Profile statt Fake-Accounts – du darfst dich zwar schon etwas umschauen, aber richtig " +
+			"loslegen kannst du erst nach unseren Verifizierungsprozess.",
+			"Aktuelle Profile durch begrenzten Zeitraum: Wir wollen die Zahl nicht künstlich erhöhen du sieht genau " + 
+			"die Leute die sich wirklich gerade damit auseinandersetzen wollen.",
+			"Klare Angaben statt Rätselraten: Manche Eigenschaften sind für dich ein absolutes No-Go? Kein Problem " +
+			"du kannst Profile einfach filtern. ",
 			"Fokus auf Qualität statt Quantität bei den Matches"
 		]
 		:
 		[
-			"Verified profiles instead of fake accounts, thanks to Auth0 login",
-			"No guessing games: gender and interests visible at a glance",
-			"Quality over quantity when it comes to matches"
+			"Verified profiles instead of fake accounts – feel free to look around a bit already, but you can only " +
+			"really get started once you've completed our verification process.",
+			"Current profiles thanks to a limited time window: we don't want to inflate the numbers artificially – " +
+			"you see exactly the people who are genuinely engaging with this right now.",
+			"Clear information instead of guesswork: some traits are an absolute dealbreaker for you? No problem – " +
+			"you can simply filter profiles.",
+			"Focus on quality over quantity when it comes to matches"
 		];
 
 	public string ImpressumLinkText => _language == AppLanguage.German ? "Impressum" : "Legal notice";
