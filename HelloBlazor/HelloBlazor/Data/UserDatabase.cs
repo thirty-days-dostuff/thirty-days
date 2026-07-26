@@ -2,24 +2,17 @@ using SQLite;
 
 namespace HelloBlazor.Data;
 
-public sealed class UserDatabase
+public sealed class UserDatabase(string databasePath)
 {
-	private readonly string _databasePath;
 	private SQLiteAsyncConnection? _connection;
-
-	public UserDatabase(string databasePath)
-	{
-		_databasePath = databasePath;
-	}
 
 	private async Task<SQLiteAsyncConnection> GetConnectionAsync()
 	{
 		if (_connection is not null)
 			return _connection;
 
-		_connection = new SQLiteAsyncConnection(_databasePath);
+		_connection = new SQLiteAsyncConnection(databasePath);
 		await _connection.CreateTableAsync<User>();
-		await _connection.CreateTableAsync<CompanyInfo>();
 		return _connection;
 	}
 
@@ -71,31 +64,5 @@ public sealed class UserDatabase
 
 		await connection.InsertAsync(user);
 		return user;
-	}
-
-	public async Task<CompanyInfo> GetCompanyInfoAsync()
-	{
-		var connection = await GetConnectionAsync();
-
-		var existing = await connection.Table<CompanyInfo>().FirstOrDefaultAsync();
-		if (existing is not null)
-			return existing;
-
-		var companyInfo = new CompanyInfo
-		{
-			CompanyName = "Musterfirma GmbH",
-			Street = "Musterstraße 1",
-			PostalCode = "12345",
-			City = "Musterstadt",
-			Country = "Deutschland",
-			Representative = "Max Mustermann",
-			Phone = "+49 30 123456",
-			Email = "info@musterfirma.example",
-			CommercialRegisterNumber = "HRB 123456",
-			VatId = "DE123456789"
-		};
-
-		await connection.InsertAsync(companyInfo);
-		return companyInfo;
 	}
 }

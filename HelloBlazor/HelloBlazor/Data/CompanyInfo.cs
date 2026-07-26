@@ -1,29 +1,14 @@
-using SQLite;
-
 namespace HelloBlazor.Data;
 
-public class CompanyInfo
-{
-	[PrimaryKey, AutoIncrement]
-	public int Id { get; set; }
-
-	public string CompanyName { get; set; } = string.Empty;
-
-	public string Street { get; set; } = string.Empty;
-
-	public string PostalCode { get; set; } = string.Empty;
-
-	public string City { get; set; } = string.Empty;
-
-	public string Country { get; set; } = string.Empty;
-
-	public string Representative { get; set; } = string.Empty;
-
-	public string Phone { get; set; } = string.Empty;
-
-	public string Email { get; set; } = string.Empty;
-
-	public string CommercialRegisterNumber { get; set; } = string.Empty;
-
-	public string VatId { get; set; } = string.Empty;
+public sealed record CompanyInfo{
+	public required string CompanyName { get; init; }
+	public required string Street { get; init; }
+	public required string PostalCode { get; init; }
+	public required string City { get; init; }
+	public required string Country { get; init; }
+	public required string Representative { get; init; }
+	public required string Phone { get; init; }
+	public required string Email { get; init; }
+	public required string CommercialRegisterNumber { get; init; }
+	public required string VatId { get; init; }
 }

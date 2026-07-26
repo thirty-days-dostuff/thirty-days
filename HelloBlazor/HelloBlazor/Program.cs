@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Auth0.AspNetCore.Authentication;
 using HelloBlazor.Authentication;
 using HelloBlazor.Components;
@@ -17,6 +18,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSingleton(new UserDatabase(Path.Combine(builder.Environment.ContentRootPath, "users.db3")));
+builder.Services.AddSingleton(builder.Configuration.GetSection("CompanyInfo").Get<CompanyInfo>()
+?? throw new InvalidOperationException($"Missing {nameof(CompanyInfo)} configuration section."));                                                                                  
 
 builder.Logging.AddOpenTelemetry(logging =>
 {
