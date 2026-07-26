@@ -31,6 +31,8 @@ public sealed class LocalizationService
 		? "Echte Verbindungen brauchen mehr als ein einfaches: Hallo, wie gehts dir ;) ?"
 		: "Real connections need more than a simple: Hi, how are you?";
 
+	public string ProfileName => _language == AppLanguage.German ? "Profilname" : "Profile name";
+	
 	public string FirstNamePlaceholder => _language == AppLanguage.German ? "Vorname" : "First name";
 
 	public string LastNamePlaceholder => _language == AppLanguage.German ? "Nachname" : "Last name";
