@@ -6,17 +6,13 @@ namespace HelloBlazor.Data;
 public class User
 {
 	[PrimaryKey, AutoIncrement]
-	public int Id { get; set; }
+	public int Id { get; init; }
 
 	[Indexed(Unique = true)]
-	public string? Auth0UserId { get; set; }
+	public string Auth0UserId { get; set; } = string.Empty;
 
 	[Indexed(Unique = true)]
 	public string Email { get; set; } = string.Empty;
-
-	public string PasswordHash { get; set; } = string.Empty;
-
-	public string PasswordSalt { get; set; } = string.Empty;
 
 	public string FirstName { get; set; } = string.Empty;
 

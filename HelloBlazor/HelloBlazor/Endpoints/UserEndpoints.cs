@@ -50,7 +50,7 @@ public static class UserEndpoints
 		app.MapPost("/api/users/login", async (LoginRequest request, UserDatabase db) =>
 		{
 			var user = await db.GetUserByEmailAsync(request.Email.Trim());
-			var success = user is not null && PasswordHasher.Verify(request.Password, user.PasswordHash, user.PasswordSalt);
+			var success = user is not null;
 			return Results.Ok(new LoginResponse(success));
 		});
 	}
