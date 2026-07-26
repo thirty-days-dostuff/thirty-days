@@ -1,6 +1,4 @@
 <Solution>
   <Project Path="HelloBlazor/HelloBlazor/HelloBlazor.csproj" />
   <Project Path="HelloBlazor/HelloBlazor.Client/HelloBlazor.Client.csproj" />
-  <Project Path="ThirtyDays/ThirtyDays/ThirtyDays.csproj" />
-  <Project Path="ThirtyDays/ThirtyDays.Client/ThirtyDays.Client.csproj" />
 </Solution>
