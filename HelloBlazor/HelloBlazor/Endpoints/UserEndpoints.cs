@@ -18,7 +18,8 @@ public static class UserEndpoints
 			if (user is null)
 				return Results.NotFound();
 
-			return Results.Ok(new UserProfileResponse(user.Email, user.FirstName, user.LastName));
+			return Results.Ok(new UserProfileResponse(user.Email, user.FirstName, user.LastName, user.DateOfBirth, 
+				user.Gender, user.InterestedIn, user.MinAgeInterest, user.MaxAgeInterest));
 		}).RequireAuthorization();
 
 		app.MapPost("/api/users/register", async (RegisterRequest request, HttpContext httpContext, UserDatabase db) =>

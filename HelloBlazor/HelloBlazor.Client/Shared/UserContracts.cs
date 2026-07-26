@@ -24,4 +24,4 @@ public record RegisterRequest(string FirstName, string LastName, DateTime DateOf
 
 public record RegisterResponse(bool Success);
 
-public record UserProfileResponse(string Email, string FirstName, string LastName);
+public record UserProfileResponse(string Email, string FirstName, string LastName, DateTime DateOfBirth, Gender Gender, GenderInterest InterestedIn, int MinAgeInterest, int MaxAgeInterest);

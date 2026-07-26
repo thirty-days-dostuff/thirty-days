@@ -15,11 +15,18 @@
                     <p><strong>Name:</strong> @context.User.Identity?.Name</p>
                     <p><strong>Email:</strong> @context.User.FindFirst(ClaimTypes.Email)?.Value</p>
 
-                    @if (_dbProfile is not null)
+                    @if (_profileInfo is not null)
                     {
-                        <h2>Local profile</h2>
-                        <p><strong>First name:</strong> @_dbProfile.FirstName</p>
-                        <p><strong>Last name:</strong> @_dbProfile.LastName</p>
+                        <h2>Profil Daten</h2>
+                        <p><strong>Vorname:</strong> @_profileInfo.FirstName</p>
+                        <p><strong>Nachname:</strong> @_profileInfo.LastName</p>
+                        <p><strong>Geburtsdatum:</strong> @_profileInfo.DateOfBirth</p>
+                        <p><strong>Geschlecht</strong> @_profileInfo.Gender</p>
+                        <p><strong>Interresiert an:</strong> @_profileInfo.InterestedIn</p>
+                        <p><strong>Altersrange: </strong> @_profileInfo.MinAgeInterest</p>
+                        <p><strong> Altersobergrenze:</strong> @_profileInfo.MaxAgeInterest</p>
+                        
+                                
                     }
                 </div>
             </Authorized>
@@ -28,10 +35,10 @@
 </div>
 
 @code {
-    private UserProfileResponse? _dbProfile;
+    private UserProfileResponse? _profileInfo;
 
     protected override async Task OnInitializedAsync()
     {
-        _dbProfile = await Http.GetFromJsonAsync<UserProfileResponse>("api/users/me");
+        _profileInfo = await Http.GetFromJsonAsync<UserProfileResponse>("api/users/me");
     }
 }
